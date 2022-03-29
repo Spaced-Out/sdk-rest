@@ -1,45 +1,22 @@
 package com.bullhornsdk.data.model.entity.core.standard;
 
-import java.math.BigDecimal;
-import java.util.Objects;
-
-import javax.validation.constraints.Size;
-
-import com.bullhornsdk.data.model.entity.core.onboarding.OnboardingReceivedSent;
-import com.bullhornsdk.data.model.entity.customfields.CustomFieldsF;
-import org.hibernate.validator.constraints.Email;
-import org.joda.time.DateTime;
-
 import com.bullhornsdk.data.api.helper.RestOneToManySerializer;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance1;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance10;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance2;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance3;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance4;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance5;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance6;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance7;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance8;
-import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance9;
-import com.bullhornsdk.data.model.entity.core.type.AssociationEntity;
-import com.bullhornsdk.data.model.entity.core.type.CreateEntity;
-import com.bullhornsdk.data.model.entity.core.type.DateLastModifiedEntity;
-import com.bullhornsdk.data.model.entity.core.type.EditHistoryEntity;
-import com.bullhornsdk.data.model.entity.core.type.FileEntity;
-import com.bullhornsdk.data.model.entity.core.type.SearchEntity;
-import com.bullhornsdk.data.model.entity.core.type.SoftDeleteEntity;
-import com.bullhornsdk.data.model.entity.core.type.UpdateEntity;
-import com.bullhornsdk.data.model.entity.customfields.CustomFieldsB;
+import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.*;
+import com.bullhornsdk.data.model.entity.core.onboarding.OnboardingReceivedSent;
+import com.bullhornsdk.data.model.entity.core.type.*;
+import com.bullhornsdk.data.model.entity.customfields.CustomFieldsF;
 import com.bullhornsdk.data.model.entity.embedded.Address;
 import com.bullhornsdk.data.model.entity.embedded.OneToMany;
 import com.bullhornsdk.data.model.response.file.standard.StandardFileAttachment;
 import com.bullhornsdk.data.util.ReadOnly;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.validator.constraints.Email;
+import org.joda.time.DateTime;
+
+import javax.validation.constraints.Size;
+import java.math.BigDecimal;
+import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonRootName(value = "data")
@@ -56,15 +33,16 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 		"customText18", "customText19", "customText2", "customText20", "customText21", "customText22", "customText23",
         "customText24", "customText25", "customText26", "customText27", "customText28", "customText29", "customText3", "customText30",
         "customText31", "customText32", "customText33", "customText34", "customText35", "customText36", "customText37", "customText38",
-        "customText39", "customText4", "customText40", "customText5", "customText6",
+        "customText39", "customText4", "customText40", "customText5", "customText6", "twoJobs", "isExempt", "totalDependentClaimAmount",
+        "otherIncomeAmount", "otherDeductionsAmount",
 		"customText7", "customText8", "customText9", "customTextBlock1", "customTextBlock10", "customTextBlock2", "customTextBlock3",
         "customTextBlock4", "customTextBlock5", "customTextBlock6", "customTextBlock7", "customTextBlock8", "customTextBlock9",
-        "dateAdded", "dateAvailable", "dateAvailableEnd", "dateI9Expiration", "dateLastComment", "dateLastModified", "dateNextCall",
+        "dateAdded", "dateAvailable", "dateAvailableEnd", "dateI9Expiration", "dateLastComment", "dateLastModified", "dateLastPayrollProviderSync", "dateNextCall",
 		"dateOfBirth", "dayRate", "dayRateLow", "degreeList", "description", "desiredLocations", "disability", "educationDegree",
 		"educations", "email", "email2", "email3", "employeeType", "employmentPreference", "customEncryptedText1", "customEncryptedText2",
         "customEncryptedText3", "customEncryptedText4", "customEncryptedText5", "customEncryptedText6", "customEncryptedText7", "customEncryptedText8",
         "customEncryptedText9",  "customEncryptedText10", "ethnicity", "experience", "externalID", "fax",
-		"fax2", "fax3", "federalAddtionalWitholdingsAmount", "federalExemptions", "federalFilingStatus", "fileAttachments", "firstName",
+		"fax2", "fax3", "federalAddtionalWitholdingsAmount", "federalExtraWithholdingAmount", "federalExemptions", "federalFilingStatus", "fileAttachments", "firstName",
 		"gender", "hourlyRate", "hourlyRateLow", "i9OnFile", "isAnonymized", "isDayLightSavings", "isDeleted", "isEditable", "isLockedOut", "interviews",
 		"lastName", "linkedPerson", "leads", "localAddtionalWitholdingsAmount", "localExemptions", "localFilingStatus", "localTaxCode",
 		"massMailOptOut", "middleName", "migrateGUID", "mobile", "name", "namePrefix", "nameSuffix", "nickName", "notes", "numCategories",
@@ -126,6 +104,8 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
 	private DateTime dateLastComment;
 
 	private DateTime dateLastModified;
+
+    private DateTime dateLastPayrollProviderSync;
 
 	private DateTime dateNextCall;
 
@@ -199,6 +179,8 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
 	private String fax3;
 
 	private BigDecimal federalAddtionalWitholdingsAmount;
+
+    private BigDecimal federalExtraWithholdingAmount;
 
 	private Integer federalExemptions;
 
@@ -397,6 +379,16 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
 	@JsonIgnore
 	@Size(max = 100)
 	private String type;
+
+    private Boolean twoJobs;
+
+    private BigDecimal totalDependentClaimAmount;
+
+    private BigDecimal otherIncomeAmount;
+
+    private BigDecimal otherDeductionsAmount;
+
+    private Boolean isExempt;
 
 	@JsonIgnore
 	private String username;
@@ -760,8 +752,17 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
 		this.dateLastModified = dateLastModified;
 	}
 
+    @JsonProperty("dateLastPayrollProviderSync")
+    public DateTime getDateLastPayrollProviderSync() {
+        return dateLastPayrollProviderSync;
+    }
 
-	@JsonProperty("dateNextCall")
+    @JsonProperty("dateLastPayrollProviderSync")
+    public void setDateLastPayrollProviderSync(DateTime dateLastPayrollProviderSync) {
+        this.dateLastPayrollProviderSync = dateLastPayrollProviderSync;
+    }
+
+    @JsonProperty("dateNextCall")
 	public DateTime getDateNextCall() {
 		return dateNextCall;
 	}
@@ -982,7 +983,17 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
 		this.federalAddtionalWitholdingsAmount = federalAddtionalWitholdingsAmount;
 	}
 
-	@JsonProperty("federalExemptions")
+    @JsonProperty("federalExtraWithholdingAmount")
+    public BigDecimal getFederalExtraWithholdingAmount() {
+        return federalExtraWithholdingAmount;
+    }
+
+    @JsonProperty("federalExtraWithholdingAmount")
+    public void setFederalExtraWithholdingAmount(BigDecimal federalExtraWithholdingAmount) {
+        this.federalExtraWithholdingAmount = federalExtraWithholdingAmount;
+    }
+
+    @JsonProperty("federalExemptions")
 	public Integer getFederalExemptions() {
 		return federalExemptions;
 	}
@@ -1812,6 +1823,56 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
 		this.workPhone = workPhone;
 	}
 
+    @JsonProperty("twoJobs")
+    public Boolean getTwoJobs() {
+        return twoJobs;
+    }
+
+    @JsonProperty("twoJobs")
+    public void setTwoJobs(Boolean twoJobs) {
+        this.twoJobs = twoJobs;
+    }
+
+    @JsonProperty("totalDependentClaimAmount")
+    public BigDecimal getTotalDependentClaimAmount() {
+        return totalDependentClaimAmount;
+    }
+
+    @JsonProperty("totalDependentClaimAmount")
+    public void setTotalDependentClaimAmount(BigDecimal totalDependentClaimAmount) {
+        this.totalDependentClaimAmount = totalDependentClaimAmount;
+    }
+
+    @JsonProperty("otherIncomeAmount")
+    public BigDecimal getOtherIncomeAmount() {
+        return otherIncomeAmount;
+    }
+
+    @JsonProperty("otherIncomeAmount")
+    public void setOtherIncomeAmount(BigDecimal otherIncomeAmount) {
+        this.otherIncomeAmount = otherIncomeAmount;
+    }
+
+    @JsonProperty("otherDeductionsAmount")
+    public BigDecimal getOtherDeductionsAmount() {
+        return otherDeductionsAmount;
+    }
+
+    @JsonProperty("otherDeductionsAmount")
+    public void setOtherDeductionsAmount(BigDecimal otherDeductionsAmount) {
+        this.otherDeductionsAmount = otherDeductionsAmount;
+    }
+
+    @JsonProperty("isExempt")
+    public Boolean getIsExempt() {
+        return isExempt;
+    }
+
+    @JsonProperty("isExempt")
+    public void setIsExempt(Boolean isExempt) {
+        this.isExempt = isExempt;
+    }
+
     @JsonProperty("customEncryptedText1")
     public String getCustomEncryptedText1() {
         return customEncryptedText1;
@@ -2069,6 +2130,7 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
             Objects.equals(dateI9Expiration, candidate.dateI9Expiration) &&
             Objects.equals(dateLastComment, candidate.dateLastComment) &&
             Objects.equals(dateLastModified, candidate.dateLastModified) &&
+            Objects.equals(dateLastPayrollProviderSync, candidate.dateLastPayrollProviderSync) &&
             Objects.equals(dateNextCall, candidate.dateNextCall) &&
             Objects.equals(dateOfBirth, candidate.dateOfBirth) &&
             Objects.equals(dayRate, candidate.dayRate) &&
@@ -2091,6 +2153,7 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
             Objects.equals(fax2, candidate.fax2) &&
             Objects.equals(fax3, candidate.fax3) &&
             Objects.equals(federalAddtionalWitholdingsAmount, candidate.federalAddtionalWitholdingsAmount) &&
+            Objects.equals(federalExtraWithholdingAmount, candidate.federalExtraWithholdingAmount) &&
             Objects.equals(federalExemptions, candidate.federalExemptions) &&
             Objects.equals(federalFilingStatus, candidate.federalFilingStatus) &&
             Objects.equals(fileAttachments, candidate.fileAttachments) &&
@@ -2198,7 +2261,7 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), luceneScore, id, address, branch, businessSectors, canEnterTime, categories, category, certificationList, certifications, clientCorporationBlackList, clientCorporationWhiteList, comments, companyName, companyURL, dateAdded, dateAvailable, dateAvailableEnd, dateI9Expiration, dateLastComment, dateLastModified, dateNextCall, dateOfBirth, dayRate, dayRateLow, degreeList, description, desiredLocations, disability, educationDegree, educations, email, email2, email3, employeeType, employmentPreference, ethnicity, experience, externalID, fax, fax2, fax3, federalAddtionalWitholdingsAmount, federalExemptions, federalFilingStatus, fileAttachments, firstName, gender, hourlyRate, hourlyRateLow, interviews, i9OnFile, isDayLightSavings, isDeleted, isEditable, isLockedOut, isAnonymized, lastName, linkedPerson, leads, localAddtionalWitholdingsAmount, localExemptions, localFilingStatus, localTaxCode, massMailOptOut, middleName, migrateGUID, mobile, name, namePrefix, nameSuffix, nickName, notes, numCategories, numOwners, occupation, onboardingDocumentReceivedCount, onboardingDocumentSentCount, onboardingPercentComplete, onboardingReceivedSent, onboardingStatus, owner, pager, paperWorkOnFile, password, phone, phone2, phone3, placements, preferredContact, primarySkills, recentClientList, referredBy, referredByPerson, references, salary, salaryLow, secondaryAddress, secondaryOwners, secondarySkills, sendouts, skillSet, smsOptIn, source, specialties, ssn, stateAddtionalWitholdingsAmount, stateExemptions, stateFilingStatus, status, submissions, tasks, taxID, taxState, tearsheets, timeZoneOffsetEST, travelLimit, type, username, veteran, webResponses, willRelocate, workAuthorized, workHistories, workPhone, customEncryptedText1, customEncryptedText2, customEncryptedText3, customEncryptedText4, customEncryptedText5, customEncryptedText6, customEncryptedText7, customEncryptedText8, customEncryptedText9, customEncryptedText10, customObject1s, customObject2s, customObject3s, customObject4s, customObject5s, customObject6s, customObject7s, customObject8s, customObject9s, customObject10s);
+        return Objects.hash(super.hashCode(), luceneScore, id, address, branch, businessSectors, canEnterTime, categories, category, certificationList, certifications, clientCorporationBlackList, clientCorporationWhiteList, comments, companyName, companyURL, dateAdded, dateAvailable, dateAvailableEnd, dateI9Expiration, dateLastComment, dateLastModified, dateLastPayrollProviderSync, dateNextCall, dateOfBirth, dayRate, dayRateLow, degreeList, description, desiredLocations, disability, educationDegree, educations, email, email2, email3, employeeType, employmentPreference, ethnicity, experience, externalID, fax, fax2, fax3, federalAddtionalWitholdingsAmount, federalExtraWithholdingAmount, federalExemptions, federalFilingStatus, fileAttachments, firstName, gender, hourlyRate, hourlyRateLow, interviews, i9OnFile, isDayLightSavings, isDeleted, isEditable, isLockedOut, isAnonymized, lastName, linkedPerson, leads, localAddtionalWitholdingsAmount, localExemptions, localFilingStatus, localTaxCode, massMailOptOut, middleName, migrateGUID, mobile, name, namePrefix, nameSuffix, nickName, notes, numCategories, numOwners, occupation, onboardingDocumentReceivedCount, onboardingDocumentSentCount, onboardingPercentComplete, onboardingReceivedSent, onboardingStatus, owner, pager, paperWorkOnFile, password, phone, phone2, phone3, placements, preferredContact, primarySkills, recentClientList, referredBy, referredByPerson, references, salary, salaryLow, secondaryAddress, secondaryOwners, secondarySkills, sendouts, skillSet, smsOptIn, source, specialties, ssn, stateAddtionalWitholdingsAmount, stateExemptions, stateFilingStatus, status, submissions, tasks, taxID, taxState, tearsheets, timeZoneOffsetEST, travelLimit, type, username, veteran, webResponses, willRelocate, workAuthorized, workHistories, workPhone, customEncryptedText1, customEncryptedText2, customEncryptedText3, customEncryptedText4, customEncryptedText5, customEncryptedText6, customEncryptedText7, customEncryptedText8, customEncryptedText9, customEncryptedText10, customObject1s, customObject2s, customObject3s, customObject4s, customObject5s, customObject6s, customObject7s, customObject8s, customObject9s, customObject10s);
     }
 
     @Override
@@ -2225,6 +2288,7 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
             ", dateI9Expiration=" + dateI9Expiration +
             ", dateLastComment=" + dateLastComment +
             ", dateLastModified=" + dateLastModified +
+            ", dateLastPayrollProviderSync=" + dateLastPayrollProviderSync +
             ", dateNextCall=" + dateNextCall +
             ", dateOfBirth=" + dateOfBirth +
             ", dayRate=" + dayRate +
@@ -2247,6 +2311,7 @@ public class Candidate extends CustomFieldsF implements SearchEntity, UpdateEnti
             ", fax2='" + fax2 + '\'' +
             ", fax3='" + fax3 + '\'' +
             ", federalAddtionalWitholdingsAmount=" + federalAddtionalWitholdingsAmount +
+            ", federalExtraWithholdingAmount=" + federalExtraWithholdingAmount +
             ", federalExemptions=" + federalExemptions +
             ", federalFilingStatus='" + federalFilingStatus + '\'' +
             ", fileAttachments=" + fileAttachments +
